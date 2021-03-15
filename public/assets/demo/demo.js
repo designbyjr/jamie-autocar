@@ -1572,7 +1572,7 @@ demo = {
 
     $.notify({
       icon: "now-ui-icons ui-1_bell-53",
-      message: "Welcome to <b>Now Ui Dashboard Pro</b> - a beautiful freebie for every web developer."
+      message: "Welcome to <b>Loggy McLogface Dashboard Pro</b> - a beautiful freebie for every web developer."
 
     }, {
       type: color,

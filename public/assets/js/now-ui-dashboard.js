@@ -1,7 +1,7 @@
 /*!
 
  =========================================================
- * Now UI Dashboard PRO - v1.5.0
+ * Loggy McLogface Dashboard PRO - v1.5.0
  =========================================================
 
  * Product Page: https://www.creative-tim.com/product/now-ui-dashboard-pro
