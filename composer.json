@@ -1,0 +1,12 @@
+{
+    "name": "jamie/autocar",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Jamie",
+            "email": "one4allplugin@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
