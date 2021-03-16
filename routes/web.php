@@ -25,8 +25,6 @@ class Web extends Route
 
         $this->router->get('/forget-password',$this->view('forget_password.php'));
 
-
-
     }
 
     function privateRoutes()
@@ -49,7 +47,7 @@ class Web extends Route
             });
 
             $this->router->post('/delete', function ($request) use ($middleware) {
-                return $this->controller($request, 'DashboardController', 'addRecord', $middleware);
+                return $this->controller($request, 'DashboardController', 'deleteRecord', $middleware);
             });
         }
 
