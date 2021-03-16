@@ -12,6 +12,12 @@ class DashboardController
         $this->views = __DIR__ .'/../views/';
     }
 
+    public function logout()
+    {
+        session_destroy();
+        header("location: /");
+    }
+
 
     public function index()
     {   $statement = "SELECT * FROM `members` left join `members_passwords` 
@@ -43,7 +49,30 @@ class DashboardController
 
         if(isset($array['id'])) {
             $statement = "DELETE FROM members_passwords WHERE id = ?";
+
             $this->db->query($statement,$array['id']);
+            $this->db->close();
+        }
+        else
+        {
+            global $errors;
+            $errors = ["Website and Website Password was not filled in"];
+        }
+        header("location: /dashboard");
+    }
+
+    public function updateRecord($request)
+    {
+        $array = $request->input();
+
+        if(isset($array['id'])) {
+            $statement = "UPDATE `members_passwords`
+            SET
+            `type` = ?,
+            `website` = ?,
+            `website_password` = ?
+            WHERE `id` = ?;";
+            $this->db->query($statement,[$array['type'],$array['website'],$array['website_password'],$array['id']]);
             $this->db->close();
         }
         else

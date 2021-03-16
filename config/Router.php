@@ -56,6 +56,11 @@ class Router
     {
         $methodDictionary = $this->{strtolower($this->request->requestMethod)};
         $formatedRoute = $this->formatRoute($this->request->requestUri);
+        if(!isset($methodDictionary[$formatedRoute]))
+        {
+            echo "The Url you want to access is only available to logged in users";
+            return;
+        }
         $method = $methodDictionary[$formatedRoute];
         unset($methodDictionary);
 

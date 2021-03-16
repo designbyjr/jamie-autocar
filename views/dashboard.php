@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Now UI Dashboard PRO by Creative Tim
+    Loggy Mc Logface
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -46,7 +46,8 @@
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="#pablo">
+                <a class="nav-link" href="/logout">
+                    Logout
                   <i class="now-ui-icons users_single-02"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Account</span>
@@ -146,10 +147,11 @@
 
                       </tr>
                             <tr class="id<?php echo $value['id'];?>"  hidden>
+                                <td>
                                 <form action="/update" method="post" class="id<?php echo $value['id'];?>" disabled>
                                     <td>
-                                        <select name="type" id="type"
-                                        <option value="Social" selected>Social</option>
+                                        <select name="type">
+                                        <option value="Social">Social</option>
                                         <option value="Finance">Finance</option>
                                         <option value="General">General</option>
                                         <option value="Bookmarked">Bookmarked</option>
@@ -162,13 +164,13 @@
 
                                         <input type="text" name="website_password" class="id<?php echo $value['id'];?>" placeholder="Password" hidden disabled>
                                         <input type="hidden" name="id" value="<?php echo $value['id'];?>">
-                                    </td>
-                                    <td class="text-right">
-                                        <button class="btn btn-info btn-square btn-icon" type="button">
+
+                                        <button class="btn btn-info btn-square btn-icon" type="submit">
                                             <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
                                         </button>
                                     </td>
                                 </form>
+                                </td>
 
 
                             </tr>
@@ -206,8 +208,9 @@
   <script>
       $('document').ready(function (){
 
-          $('button').click(function ()
+          $('button[type="button"]').click(function ()
               {
+
                   var classes = $(this).attr('id');
                   $("."+classes).each(function (){
                       console.log('hi');
