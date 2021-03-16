@@ -68,6 +68,15 @@
                 <h4 class="card-title"> <?php echo ucfirst($params[0]['member_name'])?>'s Password Table</h4>
               </div>
               <div class="card-body">
+                  <div>
+                      <?php if(isset($errors) && !empty($errors)):
+                          foreach ($errors as $error):
+                          ?>
+                       <p><b style="color: red"><?php echo $error?></b></p>
+                      <?php
+                      endforeach;
+                      endif;?>
+                  </div>
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
@@ -99,7 +108,7 @@
                             <input type="text" name="website" placeholder="Website: http://">
                         </td>
                         <td>
-                            <input type="text" name="Password" placeholder="Password">
+                            <input type="text" name="website_password" placeholder="Password">
                         </td>
                         <td class="text-right">
                             <button class="btn btn-default btn-square btn-icon" type="submit">
@@ -108,11 +117,13 @@
                         </td>
                           </form>
                       </tr>
+
                       <?php foreach($params as $value):
                         if(isset($value['website'])):
                       ?>
 
                       <tr>
+                          <form action="/delete" method="post">
                         <td>
                             <?php echo $value['type'];?>
                         </td>
@@ -121,6 +132,7 @@
                         </td>
                         <td>
                             <?php echo $value['website_password'];?>
+                            <input type="hidden" name="id" value="<?php echo $value['website_password'];?>">
                         </td>
                         <td class="text-right">
                             <button class="btn btn-default btn-square btn-icon" type="submit">
@@ -130,9 +142,11 @@
                                 <i class="now-ui-icons ui-1_simple-remove"></i>
                             </button>
                         </td>
+                          </form>
                           <?php
                           endif;
                           endforeach; ?>
+
                       </tr>
                     </tbody>
                   </table>

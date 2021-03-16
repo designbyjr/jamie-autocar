@@ -40,6 +40,17 @@ class Web extends Route
             $this->router->get('/dashboard', function ($request) use ($middleware) {
                 return $this->controller($request, 'DashboardController', 'index', $middleware);
             });
+
+            $this->router->post('/add', function ($request) use ($middleware) {
+                return $this->controller($request, 'DashboardController', 'addRecord', $middleware);
+            });
+            $this->router->post('/update', function ($request) use ($middleware) {
+                return $this->controller($request, 'DashboardController', 'addRecord', $middleware);
+            });
+
+            $this->router->post('/delete', function ($request) use ($middleware) {
+                return $this->controller($request, 'DashboardController', 'addRecord', $middleware);
+            });
         }
 
     }

@@ -32,8 +32,6 @@ class Auth {
     
     $query = "Select * from tbl_token_auth where member_id = ? and is_expired = ?";
     $result = $this->db->query($query, array($memberId, $expired));
-    var_dump($result);
-    die();
         $this->db->close();
     return $result;
     }
@@ -82,7 +80,6 @@ class Auth {
                 $values .= '"'.$param.'"' . ',';
             }
         }
-        var_dump($query);
         $result = $this->db->query($query);
         $this->db->close();
         return $result;

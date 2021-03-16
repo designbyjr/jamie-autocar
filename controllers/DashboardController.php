@@ -22,6 +22,36 @@ class DashboardController
         return $this->view('dashboard.php',$q);
     }
 
+    public function addRecord($request)
+    {
+        $array = $request->input();
+        if(isset($array['website']) && isset($array['website_password'])) {
+            $array['member_id'] = $_SESSION['member_id'];
+            $this->middleware->auth->insert('members_passwords', $array);
+        }
+        else
+        {
+            global $errors;
+            $errors = ["Website and Website Password was not filled in"];
+        }
+        header("location: /dashboard");
+    }
+
+    public function deleteRecord($request)
+    {
+        $array = $request->input();
+        if(isset($array['website']) && isset($array['website_password'])) {
+            $array['member_id'] = $_SESSION['member_id'];
+            $this->middleware->auth->insert('members_passwords', $array);
+        }
+        else
+        {
+            global $errors;
+            $errors = ["Website and Website Password was not filled in"];
+        }
+        header("location: /dashboard");
+    }
+
     public function login($request)
     {
         $email = $request->input('email');
