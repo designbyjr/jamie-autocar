@@ -3,7 +3,7 @@
 /*!
 
  =========================================================
- * Loggy McLogface Dashboard 
+ * Loggy McLogface Dashboard
  =========================================================
 */
 .btn,
@@ -19,6 +19,10 @@
   cursor: pointer;
   background-color: #888;
   color: #FFFFFF;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .btn:hover,
@@ -6463,6 +6467,11 @@ Created using IcoMoon - icomoon.io
   width: 260px;
   z-index: 4;
   padding-bottom: 100px;
+
+}
+.sidebar .sidebar-wrapper,
+.off-canvas-sidebar .sidebar-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .sidebar .sidebar-wrapper .dropdown .dropdown-backdrop,

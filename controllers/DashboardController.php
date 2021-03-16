@@ -14,8 +14,12 @@ class DashboardController
 
 
     public function index()
-    {
-        return $this->view()
+    {   $statement = "SELECT * FROM `members` left join `members_passwords` 
+        ON `members`.`member_id` = `members_passwords`.`member_id`
+        WHERE `members`.`member_id` = ?";
+        $q = $this->db->query($statement,[$_SESSION["member_id"]])->fetchAll();
+
+        return $this->view('dashboard.php',$q);
     }
 
     public function login($request)
@@ -25,17 +29,20 @@ class DashboardController
         $password_hash = password_hash ( $password);
 
         // check db
-        $statement = "SELECT * FROM USERS WHERE email = ? and password =?";
+        $statement = "SELECT * FROM USERS WHERE email = ? and password = ?";
         $q = $this->db->query($statement,[$email,$password_hash])->numRows();
         if($q == 0)
         {
             throw \Exception('User Not Found, Please check email and password');
         }
+        $this->db->close();
     }
 
     private function view($path,$params)
     {
-        return file($this->views.$path);
+        global $values;
+        $values = $params;
+        return include $this->views.$path;
     }
 
 }

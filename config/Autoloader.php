@@ -1,6 +1,6 @@
 <?php
-include_once 'Request.php';
-include_once 'Router.php';
+include 'Request.php';
+include 'Router.php';
 require_once '../env.php';
 
 class Autoloader
