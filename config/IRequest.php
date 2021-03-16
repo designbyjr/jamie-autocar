@@ -4,5 +4,5 @@
 
 interface IRequest
 {
-    public function getBody();
+    public function input($key);
 }

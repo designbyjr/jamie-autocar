@@ -1,31 +1,13 @@
 <?php
+include_once 'Request.php';
+include_once 'Router.php';
+require_once '../env.php';
 
 class Autoloader
 {
-    private $app_path =  __DIR__ . '/../';
-
-    public function __construct(){}
-
-    function loadModel() {
-        $path = $this->app_path . 'models/';
-        require_once $path .'.php';
+    public function __construct(){
+        session_start();
     }
-
-
-    public function loadView() {
-        $path = $this->app_path . 'views/';
-        $files = scandir($path);
-        foreach ($files as $file)
-        {
-            if(strpos($file,'.') !== 0)
-            {
-                $views[] = require_once $path .$file;
-            }
-
-        }
-        return $views;
-    }
-
 
     public function loadRoutes($router)
     {
@@ -35,7 +17,7 @@ class Autoloader
         {
             if(strpos($file,'.') !== 0)
             {
-                require $path .$file;
+                require_once $path .$file;
 
             }
 
@@ -57,10 +39,41 @@ class Autoloader
         }
     }
 
-    public function loader($router)
+    public function loadMiddleware()
     {
+        $path = __DIR__ . '/../middleware/';
+        $files = scandir($path);
+        foreach ($files as $file)
+        {
+            if(strpos($file,'.') !== 0 && strpos($file,'.php') !== false)
+            {
+                require_once $path .$file;
+
+            }
+
+        }
+        $path = __DIR__ . '/../middleware/Auth/';
+        $files = scandir($path);
+        foreach ($files as $file)
+        {
+            if(strpos($file,'.') !== 0 && strpos($file,'.php') !== false)
+            {
+                require_once $path .$file;
+
+            }
+
+        }
+    }
+
+
+    public function loader()
+    {
+        $this->loadMiddleware();
+        $router = new Router(new Request);
         $this->loadRoutes($router);
-       // $this->loadControllers();
+
+        $this->loadControllers();
+        return $router;
     }
 
 }

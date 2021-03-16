@@ -41,13 +41,13 @@
       <div class="content">
         <div class="container">
           <div class="col-md-4 ml-auto mr-auto">
-            <form class="form" method="" action="">
               <div class="card card-login card-plain">
                 <div class="card-header ">
                   <div style="text-align: center">
                     <img src="assets/img/loggymclog.png" alt="Loggy Mclog Face" style="height: 50px; max-width: 280px">
                   </div>
                 </div>
+                  <form action="register" method="post">
                 <div class="card-body ">
                   <div class="input-group no-border form-control-lg">
                     <span class="input-group-prepend">
@@ -55,15 +55,23 @@
                         <i class="now-ui-icons users_circle-08"></i>
                       </div>
                     </span>
-                    <input type="email" class="form-control" placeholder="Your Email...">
+                    <input type="email" name="email" class="form-control" placeholder="Your Email..." required>
                   </div>
+                    <div class="input-group no-border form-control-lg">
+                    <span class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="now-ui-icons users_circle-08"></i>
+                      </div>
+                    </span>
+                        <input type="text" name="name" class="form-control" placeholder="Your Name..." required>
+                    </div>
                   <div class="input-group no-border form-control-lg">
                     <div class="input-group-prepend">
                       <div class="input-group-text">
                         <i class="now-ui-icons text_caps-small"></i>
                       </div>
                     </div>
-                    <input type="password" placeholder="Password..." class="form-control">
+                    <input type="password" name="password" placeholder="Password..." class="form-control" required>
                   </div>
                     <div class="input-group no-border form-control-lg">
                         <div class="input-group-prepend">
@@ -71,15 +79,16 @@
                                 <i class="now-ui-icons text_caps-small"></i>
                             </div>
                         </div>
-                        <input type="password" placeholder="Confirm Password..." class="form-control">
+                        <input type="password" name="confirm_password" placeholder="Confirm Password..." class="form-control">
                     </div>
                 </div>
                 <div class="card-footer ">
-                  <button href="#pablo" type="submit" class="btn btn-primary btn-round btn-lg btn-block mb-3">Create Account</button>
+                  <button href="forget_password" type="submit" class="btn btn-primary btn-round btn-lg btn-block mb-3">Create Account</button>
 
                 </div>
+                  </form>
               </div>
-            </form>
+
           </div>
         </div>
       </div>

@@ -64,8 +64,17 @@ class Router
             return;
         }
 
-        echo call_user_func_array($method, array($this->request));
+        if (is_array($method) && ($html = implode($method)) != strip_tags($html)) {
+            echo $html;
+        }
+        else {
+            echo call_user_func_array($method, array($this->request));
+        }
     }
+
+
+
+
 
 
 }

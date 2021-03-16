@@ -1,11 +1,14 @@
 <?php
 include_once 'IRequest.php';
+//require_once '../middleware/Middleware.php';
 
 class Request implements IRequest
 {
     function __construct()
     {
         $this->bootstrapSelf();
+        // Registers middleware
+        new Middleware();
     }
 
     private function bootstrapSelf()
@@ -31,7 +34,7 @@ class Request implements IRequest
         return $result;
     }
 
-    public function getBody()
+    public function input($arrkey = null)
     {
         if($this->requestMethod === "GET")
         {
@@ -47,7 +50,10 @@ class Request implements IRequest
             {
                 $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
-
+            if(isset($arrkey))
+            {
+                return $body[$arrkey];
+            }
             return $body;
         }
     }

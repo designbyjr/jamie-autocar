@@ -1,39 +1,50 @@
 <?php
-
-class Web
+class Web extends Route
 {
-    public $router;
-    public $views;
-    public $controllers;
-
     public function __construct($router)
     {
-        $this->router = $router ;
-        $this->routes();
-        $this->views = __DIR__ .'/../views/';
-        $this->controllers = __DIR__ .'/../controllers/';
+        parent::__construct($router);
+        $this->publicRoutes();
+        $this->privateRoutes();
         return $this->router->resolve();
     }
 
-    function routes()
+    function publicRoutes()
     {
-        $this->router->get('/', function () {
-            $view = $this->views . 'login.php';
-            include_once $this->views . 'login.php';
+        $this->router->get('/', $this->view('login.php'));
+
+        $this->router->post('/login', function ($request) {
+            return $this->controller($request,'DashboardController','login');
         });
 
-        $this->router->get('/create', function () {
-            $view = $this->views.'create_account.php';
-            include_once $view;
+        $this->router->post('/register', function ($request) {
+            return $this->controller($request,'RegisterController','register');
         });
+
+        $this->router->get('/create', $this->view('create_account.php'));
+
+        $this->router->get('/forget-password',$this->view('forget_password.php'));
+
+
 
     }
 
-    function controller($controllerClass,$function)
+    function privateRoutes()
     {
-        $controller = new $controllerClass();
-        return $controller->{$function};
+        //check if logged in
+        //if not destroy session and log out and redirect to login page
+        $middleware = new LoginMiddleware();
+        $middleware->auth();
+        if($middleware->isLoggedIn) {
+
+            $this->router->get('/dashboard', function ($request) use ($middleware) {
+                return $this->controller($request, 'DashboardController', 'index', $middleware);
+            });
+        }
+
     }
+
+
 
 }
 

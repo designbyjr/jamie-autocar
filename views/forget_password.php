@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <!-- CSS Files -->
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
   <link href="assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, . -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
@@ -25,7 +25,7 @@
   <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
     <div class="container-fluid">
       <div class="navbar-wrapper">
-        <a class="navbar-brand" href="#pablo">Loggy McLogface Login</a>
+        <a class="navbar-brand" href="#pablo">Forget Password Loggy McLogface</a>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -57,23 +57,10 @@
                     </span>
                     <input type="email" class="form-control" placeholder="Your Email...">
                   </div>
-                  <div class="input-group no-border form-control-lg">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <i class="now-ui-icons text_caps-small"></i>
-                      </div>
-                    </div>
-                    <input type="password" placeholder="Password..." class="form-control">
-                  </div>
                 </div>
                 <div class="card-footer ">
-                  <button href="#pablo" type="submit" class="btn btn-primary btn-round btn-lg btn-block mb-3">Login</button>
-                  <div class="pull-left">
-                    <h6><a href="create" class="link footer-link">Create Account</a></h6>
-                  </div>
-                  <div class="pull-right">
-                    <h6><a href="/forget-password" class="link footer-link">Need Help?</a></h6>
-                  </div>
+                  <button href="forget_password" type="submit" class="btn btn-primary btn-round btn-lg btn-block mb-3">Reset Password</button>
+
                 </div>
               </div>
             </form>
