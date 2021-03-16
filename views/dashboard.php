@@ -123,19 +123,19 @@
                       ?>
 
                       <tr>
-                          <form action="/delete" method="post">
+                          <form action="/delete" method="post" class="id<?php echo $value['id'];?>">
                         <td>
-                            <?php echo $value['type'];?>
+                            <p><?php echo $value['type'];?></p>
                         </td>
                         <td>
-                            <?php echo $value['website'];?>
+                            <p><?php echo $value['website'];?></p>
                         </td>
                         <td>
-                            <?php echo $value['website_password'];?>
-                            <input type="hidden" name="id" value="<?php echo $value['website_password'];?>">
+                            <p><?php echo $value['website_password'];?></p>
+                            <input type="hidden" name="id" value="<?php echo $value['id'];?>">
                         </td>
                         <td class="text-right">
-                            <button class="btn btn-default btn-square btn-icon" type="submit">
+                            <button class="btn btn-default btn-square btn-icon" id="id<?php echo $value['id'];?>" type="button">
                                 <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
                             </button>
                             <button class="btn btn-danger btn-square btn-icon" type="submit">
@@ -143,11 +143,38 @@
                             </button>
                         </td>
                           </form>
-                          <?php
-                          endif;
-                          endforeach; ?>
 
                       </tr>
+                            <tr class="id<?php echo $value['id'];?>"  hidden>
+                                <form action="/update" method="post" class="id<?php echo $value['id'];?>" disabled>
+                                    <td>
+                                        <select name="type" id="type"
+                                        <option value="Social" selected>Social</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="General">General</option>
+                                        <option value="Bookmarked">Bookmarked</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input  type="text" name="website" class="id<?php echo $value['id'];?>" placeholder="Website: http://" disabled hidden>
+                                    </td>
+                                    <td>
+
+                                        <input type="text" name="website_password" class="id<?php echo $value['id'];?>" placeholder="Password" hidden disabled>
+                                        <input type="hidden" name="id" value="<?php echo $value['id'];?>">
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-info btn-square btn-icon" type="button">
+                                            <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
+                                        </button>
+                                    </td>
+                                </form>
+
+
+                            </tr>
+                        <?php
+                        endif;
+                      endforeach; ?>
                     </tbody>
                   </table>
                 </div>
@@ -176,6 +203,22 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="../../assets/demo/demo.js"></script>
+  <script>
+      $('document').ready(function (){
+
+          $('button').click(function ()
+              {
+                  var classes = $(this).attr('id');
+                  $("."+classes).each(function (){
+                      console.log('hi');
+                      $(this).attr('hidden',false);
+                      $(this).attr('disabled',false);
+                  });
+                  $(this).hide();
+              }
+          );
+      });
+  </script>
 </body>
 
 </html>

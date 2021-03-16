@@ -40,9 +40,11 @@ class DashboardController
     public function deleteRecord($request)
     {
         $array = $request->input();
-        if(isset($array['website']) && isset($array['website_password'])) {
-            $array['member_id'] = $_SESSION['member_id'];
-            $this->middleware->auth->insert('members_passwords', $array);
+
+        if(isset($array['id'])) {
+            $statement = "DELETE FROM members_passwords WHERE id = ?";
+            $this->db->query($statement,$array['id']);
+            $this->db->close();
         }
         else
         {
