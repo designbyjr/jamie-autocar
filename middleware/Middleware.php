@@ -27,9 +27,11 @@ class Middleware
         $username = $email;
 
         $user = $this->auth->getUserByEmail($username);
+        var_dump($user);
         if (password_verify($password, $user[0]["member_password"])) {
             $this->isAuthenticated = true;
         }
+
 
         if ($this->isAuthenticated) {
             $_SESSION["member_id"] = $user[0]["member_id"];
@@ -61,7 +63,7 @@ class Middleware
             }
             if($route == 'login' || $route == 'register')
             {
-                return $this->util->redirect("dashboard");
+                return $this->util->redirect("/dashboard");
             }
 
         }

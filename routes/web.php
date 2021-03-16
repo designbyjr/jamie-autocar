@@ -33,7 +33,7 @@ class Web extends Route
         //check if logged in
         //if not destroy session and log out and redirect to login page
         $middleware = new LoginMiddleware();
-        $middleware->auth();
+
         if($middleware->isLoggedIn) {
 
             $this->router->get('/dashboard', function ($request) use ($middleware) {

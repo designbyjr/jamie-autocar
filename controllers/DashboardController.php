@@ -8,7 +8,7 @@ class DashboardController
     public function __construct()
     {
         $this->db = new DB();
-        $this->middleware = new Middleware();
+        $this->middleware = new LoginMiddleware();
         $this->views = __DIR__ .'/../views/';
     }
 
@@ -51,7 +51,7 @@ class DashboardController
             $statement = "DELETE FROM members_passwords WHERE id = ?";
 
             $this->db->query($statement,$array['id']);
-            $this->db->close();
+           $this->db->close();
         }
         else
         {
@@ -87,16 +87,12 @@ class DashboardController
     {
         $email = $request->input('email');
         $password = $request->input('password');
-        $password_hash = password_hash ( $password);
-
-        // check db
-        $statement = "SELECT * FROM USERS WHERE email = ? and password = ?";
-        $q = $this->db->query($statement,[$email,$password_hash])->numRows();
-        if($q == 0)
+        $this->middleware->validate($email,$password,'login');
+        if($this->middleware->isLoggedIn || $this->middleware->isAuthenticated)
         {
-            throw \Exception('User Not Found, Please check email and password');
+            header("location: /dashboard");
         }
-        $this->db->close();
+
     }
 
     private function view($path,$params)

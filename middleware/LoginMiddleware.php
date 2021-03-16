@@ -8,12 +8,9 @@ class LoginMiddleware extends Middleware
     public function __construct()
     {
         parent::__construct();
-    }
-
-    public function check()
-    {
         $this->auth();
     }
+
 
     public function auth()
     {

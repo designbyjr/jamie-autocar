@@ -1,14 +1,19 @@
 <?php
 class DB {
 
-    protected $connection;
+    public $connection;
     protected $query;
     protected $show_errors = TRUE;
     protected $query_closed = TRUE;
     public $query_count = 0;
 
     public function __construct() {
+        $this->check();
         $this->preFlightCheck();
+    }
+
+    public function check()
+    {
         $dbhost = getenv ('DATABASE_HOST') ?? 'localhost';
         $dbuser = getenv ('DATABASE_USER') ?? 'root';
         $dbpass = getenv ('DATABASE_PASSWORD') ?? '';
@@ -17,13 +22,12 @@ class DB {
 
         $charset = 'utf8';
 
-            $this->connection = new mysqli($dbhost, $dbuser, $dbpass,$dbname);
-            if ($this->connection->connect_error) {
-                $this->error('Failed to connect to MySQL - ' . $this->connection->connect_error);
-            }
-            $this->connection->set_charset($charset);
+        $this->connection = new mysqli($dbhost, $dbuser, $dbpass,$dbname);
 
-
+        if ($this->connection->connect_error) {
+            $this->error('Failed to connect to MySQL - ' . $this->connection->connect_error);
+        }
+        $this->connection->set_charset($charset);
     }
 
 
@@ -78,13 +82,15 @@ class DB {
             `website_password` varchar(255) NOT NULL,
             PRIMARY KEY (`id`)
             ) ;");
-        $connection->close();
+        //$connection->close();
     }
 
     public function query($query) {
+        $this->check();
         if (!$this->query_closed) {
-            $this->query->close();
+            //$this->query->close();
         }
+
         if ($this->query = $this->connection->prepare($query)) {
             if (func_num_args() > 1) {
                 $x = func_get_args();
@@ -115,6 +121,11 @@ class DB {
             $this->error('Unable to prepare MySQL statement (check your syntax) - ' . $this->connection->error);
         }
         return $this;
+    }
+
+    public function raw($query)
+    {   var_dump($this->connection->connect_error);
+        return $this->connection->query($query);
     }
 
 

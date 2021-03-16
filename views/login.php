@@ -41,7 +41,7 @@
       <div class="content">
         <div class="container">
           <div class="col-md-4 ml-auto mr-auto">
-            <form class="form" method="" action="">
+            <form class="form" method="post" action="/login">
               <div class="card card-login card-plain">
                 <div class="card-header ">
                   <div style="text-align: center">
@@ -55,7 +55,7 @@
                         <i class="now-ui-icons users_circle-08"></i>
                       </div>
                     </span>
-                    <input type="email" class="form-control" placeholder="Your Email...">
+                    <input type="email" name="email" class="form-control" placeholder="Your Email...">
                   </div>
                   <div class="input-group no-border form-control-lg">
                     <div class="input-group-prepend">
@@ -63,7 +63,7 @@
                         <i class="now-ui-icons text_caps-small"></i>
                       </div>
                     </div>
-                    <input type="password" placeholder="Password..." class="form-control">
+                    <input type="password" name="password" placeholder="Password..." class="form-control">
                   </div>
                 </div>
                 <div class="card-footer ">

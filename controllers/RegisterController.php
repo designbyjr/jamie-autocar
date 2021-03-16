@@ -24,7 +24,7 @@ class RegisterController
             throw \Exception('Passwords do not match');
         }
         $user = $this->auth->getUserByEmail($email);
-        if(!isset($user) && !$this->middleware->isLoggedIn) {
+        if(empty($user) && !$this->middleware->isLoggedIn) {
             $phash = password_hash($password, PASSWORD_DEFAULT);
             $data = ['member_name' => $name,
                 'member_password' => $phash,
@@ -34,7 +34,7 @@ class RegisterController
         }
 
         //validate user
-        $this->middleware->validate($email,$password);
+        $this->middleware->validate($email,$password,'register');
 
 
     }

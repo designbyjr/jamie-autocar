@@ -31,8 +31,8 @@ class Auth {
     function getTokenByMemberId($memberId,$expired) {
     
     $query = "Select * from tbl_token_auth where member_id = ? and is_expired = ?";
-    $result = $this->db->query($query, array($memberId, $expired));
-        $this->db->close();
+    $result = $this->db->query($query, array($memberId, $expired))->fetchAll();
+
     return $result;
     }
 
@@ -43,8 +43,8 @@ class Auth {
 
     $query = "UPDATE tbl_token_auth SET is_expired = ? WHERE id = ?";
     $expired = 1;
-    $result = $this->db->query($query,array($expired, $tokenId));
-        $this->db->close();
+    $result = $this->db->query($query,array($expired, $tokenId))->fetchAll();
+    $this->db->close();
     return $result;
     }
 
@@ -63,7 +63,7 @@ class Auth {
      * @var Insert into the database.
      */
     public function insert(string $table,array $params) {
-
+        $this->db->check();
         $end = array_keys($params);
         $last_key = end($end);
         $query = "INSERT INTO ".$table.' (';
@@ -72,7 +72,7 @@ class Auth {
         {
             if ($key == $last_key) {
                 $query .= $key.')';
-                $values .= '"'.$param.'"'.')';
+                $values .= '"'.$param.'" );';
                 $query .= $values;
             }
             else {
@@ -80,8 +80,9 @@ class Auth {
                 $values .= '"'.$param.'"' . ',';
             }
         }
-        $result = $this->db->query($query);
-        $this->db->close();
+
+        $result = mysqli_query($this->db->connection,$query);
+       $this->db->close();
         return $result;
     }
 
